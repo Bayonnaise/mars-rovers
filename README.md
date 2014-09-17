@@ -1,4 +1,4 @@
-#Mars rovers
+#Mars rovers [![Code Climate](https://codeclimate.com/github/Bayonnaise/mars-rovers/badges/gpa.svg)](https://codeclimate.com/github/Bayonnaise/mars-rovers) [![Test Coverage](https://codeclimate.com/github/Bayonnaise/mars-rovers/badges/coverage.svg)](https://codeclimate.com/github/Bayonnaise/mars-rovers)
 **Technical challenge in Ruby and RSpec**
 
 ###Objectives
