@@ -13,7 +13,7 @@ class Surface
 
 	def print_grid
 		puts
-		grid.each do |row|
+		grid.transpose.reverse_each do |row|
 			row.each { |square| print _get_marker(square) }
 			puts
 		end

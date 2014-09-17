@@ -49,23 +49,6 @@ class MissionControl
 
 	private
 
-	def _create_surface
-		@surface = Surface.new(@grid_size[0], @grid_size[1])
-	end
-
-	def _place_all_rovers
-		@rover_starts.each { |position| _place_rover_at(position) }
-	end
-
-	def _place_rover_at(position)
-		@rovers << Rover.new(position[0], position[1], position[2])
-		_mark_as_explored(position[0], position[1])
-	end
-
-	def _rover_count
-		@rovers.count
-	end
-
 	def _mark_as_explored(x,y)
 		surface.grid[x][y].explore!
 	end
@@ -96,6 +79,23 @@ class MissionControl
 
 	def _parse_rover_moves(data)
 		@rover_moves << data.chomp.chars.map(&:to_sym)
+	end
+
+	def _create_surface
+		@surface = Surface.new(@grid_size[0], @grid_size[1])
+	end
+
+	def _place_all_rovers
+		@rover_starts.each { |position| _place_rover_at(position) }
+	end
+
+	def _place_rover_at(position)
+		@rovers << Rover.new(position[0], position[1], position[2])
+		_mark_as_explored(position[0], position[1])
+	end
+
+	def _rover_count
+		@rovers.count
 	end
 
 	def _output_information

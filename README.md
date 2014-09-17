@@ -39,11 +39,12 @@ The output for each rover should be its final co­ordinates and heading.
 
 I built the model using four classes: **MissionControl**, **Rover**, **Surface** and **Square**.
 
-**Square** simply knows whether it's been explored yet. **Surface** holds and displays a grid of Squares and tracks the exploration percentage. **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
+- **Square** simply knows whether it's been explored yet.
+- **Surface** holds and displays a grid of Squares and tracks the exploration percentage. To display the grid correctly I had to use Ruby's transpose method.
+- **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
+- **MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. It's designed so that any number of rovers can be added and controlled simply by adding more pairs of lines to the input file.
 
-**MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. It's designed so that any number of rovers can be added and controlled simply by adding more pairs of lines to the input file.
-
-You can use any test data by specifying the input file when you run the program.
+You can use any test data by specifying a different input file when you run the program.
 
 ---
 
@@ -53,12 +54,12 @@ You can use any test data by specifying the input file when you run the program.
 1 3 N
 5 1 E
 
-. x x . . . 
-. x x x . . 
 . . . . . . 
-. . . x . . 
-. x . x . . 
-. x x x . . 
+. . . . . . 
+. x . x x x 
+x x . . . x 
+x x . . x x 
+. . . . . . 
 
 Explored: 31%
 ```
