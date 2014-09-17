@@ -30,8 +30,7 @@ class Surface
 		grid.flatten.count(&:explored?)
 	end
 
-	def _get_marker(square, x, y)
-		return "x " if square.explored?
-		". "
+	def _get_marker(square)
+		square.explored? ? "x " : ". "
 	end
 end

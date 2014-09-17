@@ -14,7 +14,7 @@ describe 'surface' do
 		end
 	end
 
-	context 'handling the grid' do
+	context 'handling the results' do
 		it 'can print the grid to terminal' do
 			allow(surface).to receive(:puts)
 			expect(surface).to receive(:print).exactly(surface.grid.flatten.size).times
