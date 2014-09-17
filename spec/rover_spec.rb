@@ -11,17 +11,17 @@ describe 'rover' do
 
 	context 'when moving' do
 		it 'can rotate 90 degrees left' do
-			rover.rotate_left
+			rover.rotate(:L)
 			expect(rover.position[:facing]).to eq :W
 		end
 
 		it 'can rotate 90 degrees right' do
-			rover.rotate_right
+			rover.rotate(:R)
 			expect(rover.position[:facing]).to eq :E
 		end
 
 		it 'can move forward in the direction it is facing' do
-			rover.rotate_right
+			rover.rotate(:R)
 			rover.move
 			expect(rover.position).to eq ({ x: 2, y: 3, facing: :E })
 		end

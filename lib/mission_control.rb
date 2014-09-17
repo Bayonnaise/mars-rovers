@@ -22,6 +22,10 @@ class MissionControl
 		end
 	end
 
+	def send_order(rover: rover, command: command)
+		command == :M ? @rovers[rover].move : @rovers[rover].rotate(command)
+	end
+
 	private
 
 	def _read_data_from(filename)

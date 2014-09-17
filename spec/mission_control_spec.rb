@@ -57,6 +57,15 @@ describe 'mission control' do
 			expect(nasa.rovers[1].position).to eq ({ x: 3, y: 3, facing: :E })
 		end
 
-		
+		it 'can move a rover on instruction' do
+			nasa.send_order(rover: 0, command: :R)
+			nasa.send_order(rover: 0, command: :M)
+			expect(nasa.rovers[0].position).to eq ({ x: 2, y: 2, facing: :E})
+		end
+
+		it 'can process all instructions for a rover' do
+			nasa.process_moves_for(rover)
+			expect(nasa.rovers[0].position).to eq ({ x: 1, y: 3, facing: :N})
+		end
 	end
 end
