@@ -47,6 +47,7 @@ Starting with the simplest, **Square** currently does nothing, but was created t
 
 - Extend Rover to mark each square as explored when it gets to it, and extend Surface to display the full grid in the terminal at any stage of the mission.
 - Refactor
+- Create a method to run it without irb
 
 ---
 
