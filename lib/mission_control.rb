@@ -17,17 +17,6 @@ class MissionControl
 		File.exist?(filename) ? _read_data_from(filename) : (puts "File does not exist")
 	end
 
-	def create_surface
-		@surface = Surface.new(@grid_size[0], @grid_size[1])
-	end
-
-	def place_rovers
-		@rover_starts.each do |position|
-			@rovers << Rover.new(position[0], position[1], position[2])
-			_mark_as_explored(position[0], position[1])
-		end
-	end
-
 	def process_all_moves
 		_rover_count.times { |rover| process_move_list_for(rover) }
 	end
@@ -37,11 +26,7 @@ class MissionControl
 	end
 
 	def send_order(rover, command)
-		if command == :M
-			move(@rovers[rover])
-		else
-			@rovers[rover].rotate(command)
-		end
+		command == :M ? move(@rovers[rover]) : @rovers[rover].rotate(command)
 	end
 
 	def move(rover)
@@ -52,16 +37,29 @@ class MissionControl
 
 	def run_mission_from(filename)
 		process_input_file(filename)
-		_initialize_elements
+		initialize_elements
 		process_all_moves
-		_output_final_positions
+		_output_information
+	end
+
+	def initialize_elements
+		_create_surface
+		_place_all_rovers
 	end
 
 	private
 
-	def _initialize_elements
-		create_surface
-		place_rovers
+	def _create_surface
+		@surface = Surface.new(@grid_size[0], @grid_size[1])
+	end
+
+	def _place_all_rovers
+		@rover_starts.each { |position| _place_rover_at(position) }
+	end
+
+	def _place_rover_at(position)
+		@rovers << Rover.new(position[0], position[1], position[2])
+		_mark_as_explored(position[0], position[1])
 	end
 
 	def _rover_count
@@ -100,9 +98,11 @@ class MissionControl
 		@rover_moves << data.chomp.chars.map(&:to_sym)
 	end
 
-	def _output_final_positions
+	def _output_information
 		@rovers.each do |rover|
 			puts "#{rover.position[:x]} #{rover.position[:y]} #{rover.position[:facing]}"
 		end
+		surface.print_grid
+		puts "Explored: #{surface.percent_explored}%"
 	end
 end

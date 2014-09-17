@@ -7,21 +7,31 @@ class Surface
 
 	attr_reader :grid
 
+	def percent_explored
+		(_explored_count * 1.0 / _square_count * 100).round
+	end
+
 	def print_grid
-		grid.each_with_index do |row, x_index|
-			row.each_with_index do |square, y_index|
-				print _get_marker(square, x_index, y_index)
-			end
+		puts
+		grid.each do |row|
+			row.each { |square| print _get_marker(square) }
 			puts
 		end
+		puts
 	end
 
 	private
+
+	def _square_count
+		grid.flatten.size
+	end
+
+	def _explored_count
+		grid.flatten.count(&:explored?)
+	end
 
 	def _get_marker(square, x, y)
 		return "x " if square.explored?
 		". "
 	end
-
-
 end

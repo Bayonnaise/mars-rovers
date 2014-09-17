@@ -14,10 +14,17 @@ describe 'surface' do
 		end
 	end
 
-	context 'displaying the grid' do
+	context 'handling the grid' do
 		it 'can print the grid to terminal' do
+			allow(surface).to receive(:puts)
 			expect(surface).to receive(:print).exactly(surface.grid.flatten.size).times
 			surface.print_grid
+		end
+
+		it 'can return the exploration percentage' do
+			expect(surface.percent_explored).to eq 0
+			surface.grid[3][3].explore!
+			expect(surface.percent_explored).to eq 3
 		end
 	end
 end

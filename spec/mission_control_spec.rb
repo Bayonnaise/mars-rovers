@@ -44,8 +44,7 @@ describe 'mission control' do
 	context 'when processing instructions' do
 		before(:each) do
 			nasa.process_input_file 'test_input'
-			nasa.create_surface
-			nasa.place_rovers
+			nasa.initialize_elements
 		end
 
 		it 'can create the surface from the given grid size' do
@@ -78,8 +77,7 @@ describe 'mission control' do
 	context 'during exploration' do
 		before(:each) do
 			nasa.process_input_file 'test_input'
-			nasa.create_surface
-			nasa.place_rovers
+			nasa.initialize_elements
 		end
 
 		it 'marks rover starting squares as explored' do
@@ -99,9 +97,10 @@ describe 'mission control' do
 			expect(nasa.rovers[1].position).to eq ({ x: 5, y: 1, facing: :E})
 		end
 
-		it 'can output the rover finishing positions' do
+		it 'can output the rover finishing positions and exploration percentage' do
 			expect(nasa).to receive(:puts).with "1 3 N"
 			expect(nasa).to receive(:puts).with "5 1 E"
+			expect(nasa).to receive(:puts).with "Explored: 31%"
 			nasa.run_mission_from('test_input')
 		end
 	end
