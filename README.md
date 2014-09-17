@@ -39,9 +39,7 @@ The output for each rover should be its final co­ordinates and heading.
 
 I built the model using four main classes: **MissionControl**, **Rover**, **Surface** and **Square**.
 
-Starting with the simplest, **Square** currently does nothing, but was created to enable the later addition of exploration. **Surface** holds a grid of Squares.
-
-**Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
+Starting with the simplest, **Square** currently does nothing, but was created to enable the later addition of exploration. **Surface** holds a grid of Squares. **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
 
 **MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. The way I designed the methods makes it simple to add more rovers simply by adding more lines to the input file.
 
