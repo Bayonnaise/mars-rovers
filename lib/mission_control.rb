@@ -98,9 +98,7 @@ class MissionControl
 	end
 
 	def _output_information
-		@rovers.each do |rover|
-			puts rover.get_position_string
-		end
+		@rovers.each { |rover| puts rover.get_position_string }
 		surface.print_grid
 		puts "Explored: #{surface.percent_explored}%"
 	end

@@ -46,7 +46,7 @@ I built the model using four classes to try to keep to SRP: **MissionControl**, 
 
 **Extendability**
 
-The code was designed to be extendable. MissionControl holds an array of rovers, so additional rovers can be added and controlled simply by adding more pairs of lines to the input file.
+The code was designed to be easily extendable. MissionControl holds an array of rovers, so additional rovers can be added and controlled simply by adding more pairs of lines to the input file.
 
 You can test this by specifying a different input file when you run the program.
 

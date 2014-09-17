@@ -12,12 +12,7 @@ class Surface
 	end
 
 	def print_grid
-		puts
-		grid.transpose.reverse_each do |row|
-			row.each { |square| print _get_marker(square) }
-			puts
-		end
-		puts
+		grid.transpose.reverse_each { |row| _print_row(row) }
 	end
 
 	private
@@ -28,6 +23,11 @@ class Surface
 
 	def _explored_count
 		grid.flatten.count(&:explored?)
+	end
+
+	def _print_row(row)
+		row.each { |square| print _get_marker(square) }
+		puts
 	end
 
 	def _get_marker(square)
