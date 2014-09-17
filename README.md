@@ -46,9 +46,7 @@ I built the model using four classes: **MissionControl**, **Rover**, **Surface**
 
 You can use any test data by specifying a different input file when you run the program.
 
----
-
-###Example output
+**Example output**
 
 ```shell
 1 3 N
