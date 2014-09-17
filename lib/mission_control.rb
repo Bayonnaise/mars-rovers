@@ -28,7 +28,7 @@ class MissionControl
 	end
 
 	def process_all_moves
-		@rovers.count.times { |rover| process_move_list_for(rover) }
+		_rover_count.times { |rover| process_move_list_for(rover) }
 	end
 
 	def process_move_list_for(rover)
@@ -39,7 +39,23 @@ class MissionControl
 		command == :M ? @rovers[rover].move : @rovers[rover].rotate(command)
 	end
 
+	def run_mission_from(filename)
+		process_input_file(filename)
+		_initialize_elements
+		process_all_moves
+		_output_final_positions
+	end
+
 	private
+
+	def _initialize_elements
+		create_surface
+		place_rovers
+	end
+
+	def _rover_count
+		@rovers.count
+	end
 
 	def _read_data_from(filename)
 		_parse_all( File.open(filename) { |f| f.readlines } )
@@ -67,5 +83,11 @@ class MissionControl
 
 	def _parse_rover_moves(data)
 		@rover_moves << data.chomp.chars.map(&:to_sym)
+	end
+
+	def _output_final_positions
+		@rovers.each do |rover|
+			puts "#{rover.position[:x]} #{rover.position[:y]} #{rover.position[:facing]}"
+		end
 	end
 end

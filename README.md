@@ -37,7 +37,20 @@ The output for each rover should be its final co­ordinates and heading.
 
 ###Status - working
 
-tbc
+**Done...***
+
+I built the model using four main classes: **MissionControl**, **Rover**, **Surface** and **Square**.
+
+Starting with the simplest, **Square** currently does nothing, but was created to enable the later addition of exploration. **Surface** holds a grid of Squares.
+
+**Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
+
+**MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. The way I designed the methods makes it simple to add more rovers simply by adding more lines to the input file.
+
+**Still to do...**
+
+- Extend Rover to mark each square as explored when it gets to it, and extend Surface to display the full grid in the terminal at any stage of the mission.
+- Refactor
 
 ---
 
@@ -48,6 +61,7 @@ git clone https://github.com/Bayonnaise/mars-rovers.git
 cd mars-rovers
 irb
 require './lib/mission_control.rb'
+MissionControl.new.run_mission_from 'test_input'
 ```
 
 ###How to run tests

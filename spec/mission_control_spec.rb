@@ -74,4 +74,18 @@ describe 'mission control' do
 			expect(nasa.rovers[1].position).to eq ({ x: 5, y: 1, facing: :E})
 		end
 	end
+
+	context 'when running from scratch' do
+		it 'can do everything from one command' do
+			nasa.run_mission_from('test_input')
+			expect(nasa.rovers[0].position).to eq ({ x: 1, y: 3, facing: :N})
+			expect(nasa.rovers[1].position).to eq ({ x: 5, y: 1, facing: :E})
+		end
+
+		it 'can output the rover finishing positions' do
+			expect(nasa).to receive(:puts).with "1 3 N"
+			expect(nasa).to receive(:puts).with "5 1 E"
+			nasa.run_mission_from('test_input')
+		end
+	end
 end
