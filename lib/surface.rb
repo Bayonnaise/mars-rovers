@@ -12,7 +12,9 @@ class Surface
 	end
 
 	def print_grid
+		puts
 		grid.transpose.reverse_each { |row| _print_row(row) }
+		puts
 	end
 
 	private
