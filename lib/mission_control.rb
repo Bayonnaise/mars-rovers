@@ -22,7 +22,15 @@ class MissionControl
 		end
 	end
 
-	def send_order(rover: rover, command: command)
+	def process_all_moves
+		@rovers.count.times { |rover| process_move_list_for(rover) }
+	end
+
+	def process_move_list_for(rover)
+		@rover_moves[rover].each { |command| send_order(rover, command) }
+	end
+
+	def send_order(rover, command)
 		command == :M ? @rovers[rover].move : @rovers[rover].rotate(command)
 	end
 
