@@ -35,16 +35,20 @@ The output for each rover should be its final co­ordinates and heading.
 
 ---
 
-###Status - operational
+###Development
 
-I built the model using four classes: **MissionControl**, **Rover**, **Surface** and **Square**.
+I built the model using four classes to try to keep to SRP: **MissionControl**, **Rover**, **Surface** and **Square**.
 
 - **Square** simply knows whether it's been explored yet.
-- **Surface** holds and displays a grid of Squares and tracks the exploration percentage. To display the grid correctly I had to use Ruby's transpose method.
+- **Surface** holds and displays a grid of Squares, and tracks the exploration percentage. To display the grid correctly I had to use Ruby's transpose method.
 - **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
-- **MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. It's designed so that any number of rovers can be added and controlled simply by adding more pairs of lines to the input file.
+- **MissionControl** does the hard work, processing the input file and sending the commands through to each Rover.
 
-You can use any test data by specifying a different input file when you run the program.
+**Extendability**
+
+The code was designed to be extendable. MissionControl holds an array of rovers, so additional rovers can be added and controlled simply by adding more pairs of lines to the input file.
+
+You can test this by specifying a different input file when you run the program.
 
 **Example output**
 

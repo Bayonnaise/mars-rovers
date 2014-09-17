@@ -14,9 +14,7 @@ class Rover
 	attr_reader :position
 
 	def rotate(direction)
-		COMPASS[direction].each_cons(2) do |item, next_item|
-			position[:facing] = next_item and break if _match?(item)
-		end
+		COMPASS[direction].each_cons(2) { |item, next_item| _face(next_item) and break if _match?(item) }
 	end
 
 	def move
@@ -33,6 +31,10 @@ class Rover
 	end
 
 	private
+
+	def _face(direction)
+		position[:facing] = direction
+	end
 
 	def _match?(item)
 		item == position[:facing]
