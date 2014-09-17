@@ -41,9 +41,22 @@ describe 'mission control' do
 		end
 	end
 
-	context 'when controlling the rover' do
-		it 'can tell the rover to turn when L or R come up' do
-
+	context 'when processing instructions' do
+		before(:each) do
+			nasa.process_input_file 'test_input'
+			nasa.create_surface
+			nasa.place_rovers
 		end
+
+		it 'can create the surface from the given grid size' do
+			expect(nasa.surface.grid.flatten.size).to eq 25
+		end
+
+		it 'can place all rovers on the grid' do
+			expect(nasa.rovers[0].position).to eq ({ x: 1, y: 2, facing: :N })
+			expect(nasa.rovers[1].position).to eq ({ x: 3, y: 3, facing: :E })
+		end
+
+		
 	end
 end

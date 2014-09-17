@@ -3,12 +3,23 @@ class MissionControl
 		@grid_size = []
 		@rover_starts = []
 		@rover_moves = []
+		@rovers = []
 	end
 
-	attr_reader :grid_size, :rover_starts, :rover_moves
+	attr_reader :grid_size, :rover_starts, :rover_moves, :surface, :rovers
 
 	def process_input_file(filename)
 		File.exist?(filename) ? _read_data_from(filename) : (puts "File does not exist")
+	end
+
+	def create_surface
+		@surface = Surface.new(@grid_size[0], @grid_size[1])
+	end
+
+	def place_rovers
+		@rover_starts.each do |position|
+			@rovers << Rover.new(position[0], position[1], position[2])
+		end
 	end
 
 	private
