@@ -37,8 +37,6 @@ The output for each rover should be its final co­ordinates and heading.
 
 ###Status - working
 
-**Done...**
-
 I built the model using four main classes: **MissionControl**, **Rover**, **Surface** and **Square**.
 
 Starting with the simplest, **Square** currently does nothing, but was created to enable the later addition of exploration. **Surface** holds a grid of Squares.
