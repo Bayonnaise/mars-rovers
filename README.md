@@ -56,9 +56,7 @@ Starting with the simplest, **Square** currently does nothing, but was created t
 ```shell
 git clone https://github.com/Bayonnaise/mars-rovers.git
 cd mars-rovers
-irb
-require './lib/mission_control.rb'
-MissionControl.new.run_mission_from 'test_input'
+ruby lib/launch_mission.rb test_input
 ```
 
 ###How to run tests
