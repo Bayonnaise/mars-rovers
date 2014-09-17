@@ -43,7 +43,12 @@ tbc
 
 ###How to run
 
-tbc
+```shell
+git clone https://github.com/Bayonnaise/mars-rovers.git
+cd mars-rovers
+irb
+require './lib/mission_control.rb'
+```
 
 ###How to run tests
 

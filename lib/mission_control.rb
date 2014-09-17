@@ -1,3 +1,8 @@
+require_relative './surface.rb'
+require_relative './rover.rb'
+require_relative './surface.rb'
+
+
 class MissionControl
 	def initialize
 		@grid_size = []
