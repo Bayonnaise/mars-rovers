@@ -1,7 +1,5 @@
 require_relative './surface.rb'
 require_relative './rover.rb'
-require_relative './surface.rb'
-
 
 class MissionControl
 	def initialize
@@ -31,7 +29,7 @@ class MissionControl
 
 	def move(rover)
 		rover.move
-		x, y = rover.get_position
+		x, y = rover.get_coordinates
 		_mark_as_explored(x, y)
 	end
 
@@ -90,8 +88,9 @@ class MissionControl
 	end
 
 	def _place_rover_at(position)
-		@rovers << Rover.new(position[0], position[1], position[2])
-		_mark_as_explored(position[0], position[1])
+		x, y, facing = position[0], position[1], position[2]
+		@rovers << Rover.new(x, y, facing)
+		_mark_as_explored(x, y)
 	end
 
 	def _rover_count
@@ -100,7 +99,7 @@ class MissionControl
 
 	def _output_information
 		@rovers.each do |rover|
-			puts "#{rover.position[:x]} #{rover.position[:y]} #{rover.position[:facing]}"
+			puts rover.get_position_string
 		end
 		surface.print_grid
 		puts "Explored: #{surface.percent_explored}%"

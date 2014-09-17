@@ -24,8 +24,12 @@ class Rover
 		position[axis] += change
 	end
 
-	def get_position
+	def get_coordinates
 		return position[:x], position[:y]
+	end
+
+	def get_position_string
+		"#{position[:x]} #{position[:y]} #{position[:facing]}"
 	end
 
 	private
