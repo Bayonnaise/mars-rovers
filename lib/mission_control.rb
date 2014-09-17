@@ -24,6 +24,7 @@ class MissionControl
 	def place_rovers
 		@rover_starts.each do |position|
 			@rovers << Rover.new(position[0], position[1], position[2])
+			_mark_as_explored(position[0], position[1])
 		end
 	end
 
@@ -36,7 +37,17 @@ class MissionControl
 	end
 
 	def send_order(rover, command)
-		command == :M ? @rovers[rover].move : @rovers[rover].rotate(command)
+		if command == :M
+			move(@rovers[rover])
+		else
+			@rovers[rover].rotate(command)
+		end
+	end
+
+	def move(rover)
+		rover.move
+		x, y = rover.get_position
+		_mark_as_explored(x, y)
 	end
 
 	def run_mission_from(filename)
@@ -55,6 +66,10 @@ class MissionControl
 
 	def _rover_count
 		@rovers.count
+	end
+
+	def _mark_as_explored(x,y)
+		surface.grid[x][y].explore!
 	end
 
 	def _read_data_from(filename)

@@ -24,4 +24,8 @@ class Rover
 		axis, change = MOVEMENT[position[:facing]].flatten
 		position[axis] += change
 	end
+
+	def get_position
+		return position[:x], position[:y]
+	end
 end

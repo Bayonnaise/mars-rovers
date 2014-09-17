@@ -49,7 +49,7 @@ describe 'mission control' do
 		end
 
 		it 'can create the surface from the given grid size' do
-			expect(nasa.surface.grid.flatten.size).to eq 25
+			expect(nasa.surface.grid.flatten.size).to eq 36
 		end
 
 		it 'can place all rovers on the grid' do
@@ -72,6 +72,23 @@ describe 'mission control' do
 			nasa.process_all_moves
 			expect(nasa.rovers[0].position).to eq ({ x: 1, y: 3, facing: :N})
 			expect(nasa.rovers[1].position).to eq ({ x: 5, y: 1, facing: :E})
+		end
+	end
+
+	context 'during exploration' do
+		before(:each) do
+			nasa.process_input_file 'test_input'
+			nasa.create_surface
+			nasa.place_rovers
+		end
+
+		it 'marks rover starting squares as explored' do
+			expect(nasa.surface.grid[1][2].explored?).to be true
+		end
+
+		it 'marks each square it reaches as explored' do
+			nasa.send_order(0, :M)
+			expect(nasa.surface.grid[1][3].explored?).to be true
 		end
 	end
 
