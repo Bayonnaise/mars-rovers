@@ -12,23 +12,22 @@ In order to control a rover, NASA sends a simple string of letters. The possible
 
 Test Input:
 
+```shell
 5 5
-
 1 2 N
-
 LMLMLMLMM
-
 3 3 E
-
 MMRMMRMRRM
+```
 
 **OUTPUT:** The output for each rover should be its final co­ordinates and heading.
 
 Expected Output:
 
+```
 1 3 N
-
 5 1 E
+```
 
 ---
 
