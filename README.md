@@ -35,19 +35,33 @@ The output for each rover should be its final co­ordinates and heading.
 
 ---
 
-###Status - working
+###Status - operational
 
-I built the model using four main classes: **MissionControl**, **Rover**, **Surface** and **Square**.
+I built the model using four classes: **MissionControl**, **Rover**, **Surface** and **Square**.
 
-Starting with the simplest, **Square** currently does nothing, but was created to enable the later addition of exploration. **Surface** holds a grid of Squares. **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
+**Square** simply knows whether it's been explored yet. **Surface** holds and displays a grid of Squares and tracks the exploration percentage. **Rover** has a position (x, y and orientation), and can rotate and move in the direction it's facing.
 
-**MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. The way I designed the methods makes it simple to add more rovers simply by adding more lines to the input file.
+**MissionControl** does the hard work, processing the input file and sending the commands through to each Rover. It's designed so that any number of rovers can be added and controlled simply by adding more pairs of lines to the input file.
 
-**Still to do...**
+You can use any test data by specifying the input file when you run the program.
 
-- Extend Rover to mark each square as explored when it gets to it, and extend Surface to display the full grid in the terminal at any stage of the mission.
-- Refactor
-- Create a method to run it without irb
+---
+
+###Example output
+
+```shell
+1 3 N
+5 1 E
+
+. x x . . . 
+. x x x . . 
+. . . . . . 
+. . . x . . 
+. x . x . . 
+. x x x . . 
+
+Explored: 31%
+```
 
 ---
 
